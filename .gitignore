@@ -113,6 +113,7 @@ celerybeat.pid
 .venv
 env/
 venv/
+pcg-venv
 ENV/
 env.bak/
 venv.bak/
@@ -143,3 +144,4 @@ cython_debug/
 
 *.code-workspace
 *.python-version
+*.vscode/
