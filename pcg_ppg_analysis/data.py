@@ -5,6 +5,7 @@ import pandas as pd
 from pathlib import Path
 from datetime import date, datetime
 
+
 def __convert_date(value):
     """Convert recording date to datetime object.
 
@@ -13,23 +14,30 @@ def __convert_date(value):
 
     Args:
         - value: the string to be converted.
-    
+
     Returns:
         the converted string into a datetime.datetime object.
     """
     return datetime.strptime(value, '%d-%m-%Y')
 
+
 def __convert_recording_time(value):
+    """Convert recording date from string to datetime object.
+    """
     return datetime.strptime(value, '%H.%M')
+
 
 def __convert_age(value):
     return int(value.split(' ')[0])
 
+
 def __convert_weight(value):
     return float(value.split(' ')[0])
 
+
 def __convert_height(value):
     return float(value.split(' ')[0])*100.
+
 
 def __convert_recording_info(field, value):
     conversion_dict = {
@@ -87,26 +95,27 @@ def load_recording_info(path):
         for line in f.readlines():
             field = line.split(':')[0]
             value = line.split(':')[1][1:]
-            value = value.replace('\n','')
+            value = value.replace('\n', '')
             if (value[0] == ' '):
                 value = value.replace(' ', '')
             value = __convert_recording_info(field, value)
             recording_info_dict[field] = value
-    # Add time (year, month, day) to Gima and Soundi recordings  
-    recording_info_dict['Orario reg Gima'] = datetime(year = recording_info_dict['Data'].year,
-                                                        month = recording_info_dict['Data'].month,
-                                                        day = recording_info_dict['Data'].day,
-                                                        hour = recording_info_dict['Orario reg Gima'].hour,
-                                                        minute = recording_info_dict['Orario reg Gima'].minute,
-                                                        second = recording_info_dict['Orario reg Gima'].second)
-    recording_info_dict['Orario reg Soundi'] = datetime(year = recording_info_dict['Data'].year,
-                                                        month = recording_info_dict['Data'].month,
-                                                        day = recording_info_dict['Data'].day,
-                                                        hour = recording_info_dict['Orario reg Soundi'].hour,
-                                                        minute = recording_info_dict['Orario reg Soundi'].minute,
-                                                        second = recording_info_dict['Orario reg Soundi'].second)
+    # Add time (year, month, day) to Gima and Soundi recordings
+    recording_info_dict['Orario reg Gima'] = datetime(year=recording_info_dict['Data'].year,
+                                                      month=recording_info_dict['Data'].month,
+                                                      day=recording_info_dict['Data'].day,
+                                                      hour=recording_info_dict['Orario reg Gima'].hour,
+                                                      minute=recording_info_dict['Orario reg Gima'].minute,
+                                                      second=recording_info_dict['Orario reg Gima'].second)
+    recording_info_dict['Orario reg Soundi'] = datetime(year=recording_info_dict['Data'].year,
+                                                        month=recording_info_dict['Data'].month,
+                                                        day=recording_info_dict['Data'].day,
+                                                        hour=recording_info_dict['Orario reg Soundi'].hour,
+                                                        minute=recording_info_dict['Orario reg Soundi'].minute,
+                                                        second=recording_info_dict['Orario reg Soundi'].second)
 
     return recording_info_dict
+
 
 def __load_single_column_data(path):
     """Load single-column data from file.
@@ -117,9 +126,9 @@ def __load_single_column_data(path):
 
     Args:
         path (str): path to the file containing data
-    
+
     Returns:
-        data: NumPy array with data.
+        data: :class:`numpy.ndarray` with data.
     """
     # Check on path
     if (not isinstance(path, Path)):
@@ -127,13 +136,14 @@ def __load_single_column_data(path):
     # Check on path existance
     if (not path.exists()):
         raise ValueError
-    
+
     data = []
     with open(path, 'r') as f:
         for line in f.readlines():
             data.append(float(line))
 
     print(len(data))
+
 
 def load_pcg(path):
     """Load PCG data from file.
@@ -144,11 +154,12 @@ def load_pcg(path):
 
     Args:
         path (str): path to the file containing PCG data
-    
+
     Returns:
-        data: NumPy array with PCG data.
+        data:  :class:`numpy.ndarray` with PCG data.
     """
     return __load_single_column_data(path)
+
 
 def load_ppg(path):
     """Load PPG data from file.
@@ -159,14 +170,15 @@ def load_ppg(path):
 
     Args:
         path (str): path to the file containing PPG data
-    
+
     Returns:
-        data: NumPy array with PPG data.
+        data:  :class:`numpy.ndarray` array with PPG data.
     """
     return __load_single_column_data(path)
 
+
 def extract_pcg_ppg_slots(pcg, ppg, sampling_frequency, slot_size, overlap):
     """
-    
+
     """
     pass

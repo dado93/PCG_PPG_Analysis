@@ -30,6 +30,7 @@ author = 'Davide Marzorati'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "sphinx.ext.intersphinx",
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
     "sphinx_rtd_theme",
@@ -58,3 +59,8 @@ html_static_path = ['_static']
 
 napoleon_google_docstring = True
 napoleon_numpy_docstring = False
+
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/', None),
+    'numpy': ('https://docs.scipy.org/doc/numpy', None)
+}
