@@ -8,6 +8,7 @@ config = {
     'author': "Davide Marzorati",
     'author_email': "davide.marzorati@polimi.it",
     'packages': setuptools.find_packages(),
+    'install_requires': requirements,
 }
 
 setuptools.setup(**config)
