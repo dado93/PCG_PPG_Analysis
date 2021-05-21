@@ -15,5 +15,4 @@ User Manual
    authors
    help
 
-
-   
+  

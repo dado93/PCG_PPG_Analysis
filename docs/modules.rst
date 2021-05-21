@@ -1,4 +1,4 @@
-pcg_ppg_analysis
+API Reference
 ================
 
 .. toctree::

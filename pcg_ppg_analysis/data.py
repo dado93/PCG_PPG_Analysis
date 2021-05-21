@@ -6,28 +6,47 @@ from pathlib import Path
 from datetime import date, datetime
 
 
-def __convert_date(value):
-    """Convert recording date to datetime object.
+def __convert_date(datetime_string):
+    """Convert recording date to datetime.datetime object.
 
     This function converts a recording date in the 
     following format "%d-%m-%Y" to a datetime.datetime object.
 
     Args:
-        - value: the string to be converted.
+        datetime_string (str, required): the string to be converted.
 
     Returns:
-        the converted string into a datetime.datetime object.
+        (`class:datetime.datetime`.__): the :py:attr:`datetime_string` converted
+            into a datetime.datetime object.
     """
-    return datetime.strptime(value, '%d-%m-%Y')
+    return datetime.strptime(datetime_string, '%d-%m-%Y')
 
 
-def __convert_recording_time(value):
-    """Convert recording date from string to datetime object.
+def __convert_recording_time(datetime_string):
+    """Convert recording hour from string to datetime object.
+
+    This function converts a recording hour in the 
+    following format "%H.%M" to a datetime.datetime object.
+
+    Args:
+        datetime_string (str, required): the string to be converted.
+
+    Returns:
+        (`class:datetime.datetime`.__): the :py:attr:`datetime_string` converted
+            into a datetime.datetime object.
     """
-    return datetime.strptime(value, '%H.%M')
+    return datetime.strptime(datetime_string, '%H.%M')
 
 
 def __convert_age(value):
+    """Convert age from string.
+
+    Args:
+        value (string, required): Convert 
+
+    Returns:
+        [type]: [description]
+    """
     return int(value.split(' ')[0])
 
 
@@ -65,7 +84,7 @@ def load_recording_info(path):
 
     -`Orario reg Gima` (datetime.datetime Object): year, month, day, hour, and minute of the Gima recording
 
-    -`Orario reg Soundi` (datetime.datetime Object): year, month, day, hour and minute of the Soundi recording
+    -`Orario reg Soundi` (:class:datetime.datetime`.__): year, month, day, hour and minute of the Soundi recording
 
     -`Età` (int) : subject age 
 
@@ -141,8 +160,6 @@ def __load_single_column_data(path):
     with open(path, 'r') as f:
         for line in f.readlines():
             data.append(float(line))
-
-    print(len(data))
 
 
 def load_pcg(path):

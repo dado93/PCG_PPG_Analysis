@@ -1,10 +1,10 @@
-pcg_ppg_analysis package
-========================
+pcg_ppg_analysis
+=================
 
 Submodules
 ----------
 
-pcg_ppg_analysis.data module
+data
 --------------------------
 .. automodule:: pcg_ppg_analysis.data
    :members:
