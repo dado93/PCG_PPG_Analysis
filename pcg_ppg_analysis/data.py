@@ -70,6 +70,7 @@ def __convert_recording_info(field, value):
     if (field in conversion_dict.keys()):
         return conversion_dict[field](value)
     else:
+        print(f'Error occurred with {field} and {value}')
         raise ValueError
 
 
@@ -160,6 +161,7 @@ def __load_single_column_data(path):
     with open(path, 'r') as f:
         for line in f.readlines():
             data.append(float(line))
+    return data
 
 
 def load_pcg(path):
